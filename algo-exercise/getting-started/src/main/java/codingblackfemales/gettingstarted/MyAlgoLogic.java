@@ -37,8 +37,6 @@ public class MyAlgoLogic implements AlgoLogic {
          * Add your logic here....
          *
          */
-        // logger.info("---BID BOOK---");
-
          // Define the maximum number of bid levels to check
         int maxBidLevels = Math.min(15, state.getBidLevels());
         int maxOrders = 3;

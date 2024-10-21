@@ -34,6 +34,7 @@ public class MyAlgoTest extends AbstractAlgoTest {
         //simple assert to check we had 3 orders created
         assertEquals(container.getState().getChildOrders().size(), 3);
 
+        //simple assert to check Active child orders
         assertEquals(container.getState().getActiveChildOrders().size(), 0);
     }
 
