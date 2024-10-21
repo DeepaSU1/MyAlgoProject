@@ -37,7 +37,7 @@ public class MyAlgoLogic implements AlgoLogic {
          * Add your logic here....
          *
          */
-        logger.info("---BID BOOK---");
+        // logger.info("---BID BOOK---");
 
          // Define the maximum number of bid levels to check
         int maxBidLevels = Math.min(15, state.getBidLevels());
@@ -51,10 +51,7 @@ public class MyAlgoLogic implements AlgoLogic {
         for (int i = 0; i < maxBidLevels; i++) {
             BidLevel currentBid = state.getBidAt(i);
              // Add null check to avoid NullPointerException
-            // if (currentBid == null) {
-            //     logger.warn("Bid " + i + " is null, skipping this level.");
-            //     continue;  // Skip this level if it's null
-            // }
+            
 
             logger.info("Bid " + i + ": [Price: " + currentBid.price + ", Quantity: " + currentBid.quantity + "]");
 
@@ -65,9 +62,7 @@ public class MyAlgoLogic implements AlgoLogic {
             }
         }
         
-        // logger.info("Best bid found: [Price: " + bestBid.price + ", Quantity: " + bestBid.quantity + "]");
-
-
+        
         // for (int i = 0; i < state.getBidLevels(); i++) {
         //     BidLevel bid = state.getBidAt(i); 
         //     logger.info("Bid " + i + ": [Price: " + bid.price + ", Quantity: " + bid.quantity);
@@ -90,27 +85,26 @@ public class MyAlgoLogic implements AlgoLogic {
          
        logger.info("[MYALGO] Total child order so far:" + state.getChildOrders().size());
     
-        // assertEquals(container.getState().getChildOrders().size());
-
+        
         //actual orders
          logger.info("[MYALGO] Total filled quantity so far: " + totalFilledQuantity);
 
         if (cancelOrders == true && !activeOrders.isEmpty()) {
             ChildOrder firstOrder = activeOrders.get(0);
             logger.info("[MYALGO] Cancelling order: " + firstOrder);
-            return new CancelChildOrder(firstOrder); // Cancel existing order
+            return new CancelChildOrder(firstOrder); //Cancel existing order
 
         } else if (cancelOrders == true && activeOrders.isEmpty()){
             return NoAction.NoAction;
         }
-        // If we reached the maximum number of orders, enable cancellation for the next evaluation
         
+        // If no active orders, create a new buy order at the best bid price
          if (activeOrders.size() < maxOrders && bestBid != null){
-            // If no active orders, create a new buy order at the best bid price
             
+            
+            // If we reached the maximum number of orders, enable cancellation for the next evaluation
             if (activeOrders.size() + 1 >= maxOrders) {
             cancelOrders = true;
-            
               // Do nothing until orders are canceled
         }
             logger.info("[MYALGO] Placing new buy order for " + bestBid.quantity + " units @ " + bestBid.price);
