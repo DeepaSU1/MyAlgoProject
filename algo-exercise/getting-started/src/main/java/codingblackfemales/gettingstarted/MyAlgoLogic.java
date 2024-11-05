@@ -59,16 +59,7 @@ public class MyAlgoLogic implements AlgoLogic {
                 bestBid = currentBid;
             }
         }
-        
-        
-        // for (int i = 0; i < state.getBidLevels(); i++) {
-        //     BidLevel bid = state.getBidAt(i); 
-        //     logger.info("Bid " + i + ": [Price: " + bid.price + ", Quantity: " + bid.quantity);
-        // }
-        
-
-        // BidLevel bestBid = state.getBidAt(0);  // Get the highest bid (price willing to buy)
-        // AskLevel bestAsk = state.getAskAt(0);  // Get the lowest ask (price willing to sell)
+                    
 
         // Check active orders
         var activeOrders = state.getActiveChildOrders();
